@@ -16,6 +16,8 @@
 		841A999E28C125870031D3C8 /* TheDoorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A999D28C125870031D3C8 /* TheDoorsTests.swift */; };
 		841A99A828C125870031D3C8 /* TheDoorsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A99A728C125870031D3C8 /* TheDoorsUITests.swift */; };
 		841A99AA28C125870031D3C8 /* TheDoorsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A99A928C125870031D3C8 /* TheDoorsUITestsLaunchTests.swift */; };
+		841A99BA28C125DE0031D3C8 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A99B928C125DE0031D3C8 /* Model.swift */; };
+		841A99BC28C1261D0031D3C8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A99BB28C1261D0031D3C8 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		841A99A328C125870031D3C8 /* TheDoorsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheDoorsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		841A99A728C125870031D3C8 /* TheDoorsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheDoorsUITests.swift; sourceTree = "<group>"; };
 		841A99A928C125870031D3C8 /* TheDoorsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheDoorsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		841A99B928C125DE0031D3C8 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		841A99BB28C1261D0031D3C8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +103,11 @@
 		841A998528C125830031D3C8 /* TheDoors */ = {
 			isa = PBXGroup;
 			children = (
+				841A99B828C125C90031D3C8 /* Controllers */,
+				841A99B728C125BF0031D3C8 /* Models */,
+				841A99B628C125B30031D3C8 /* Views */,
 				841A998628C125840031D3C8 /* AppDelegate.swift */,
 				841A998828C125840031D3C8 /* SceneDelegate.swift */,
-				841A998A28C125840031D3C8 /* ViewController.swift */,
 				841A998C28C125840031D3C8 /* Main.storyboard */,
 				841A998F28C125860031D3C8 /* Assets.xcassets */,
 				841A999128C125860031D3C8 /* LaunchScreen.storyboard */,
@@ -125,6 +131,30 @@
 				841A99A928C125870031D3C8 /* TheDoorsUITestsLaunchTests.swift */,
 			);
 			path = TheDoorsUITests;
+			sourceTree = "<group>";
+		};
+		841A99B628C125B30031D3C8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				841A99BB28C1261D0031D3C8 /* MainView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		841A99B728C125BF0031D3C8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				841A99B928C125DE0031D3C8 /* Model.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		841A99B828C125C90031D3C8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				841A998A28C125840031D3C8 /* ViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +291,8 @@
 				841A998B28C125840031D3C8 /* ViewController.swift in Sources */,
 				841A998728C125840031D3C8 /* AppDelegate.swift in Sources */,
 				841A998928C125840031D3C8 /* SceneDelegate.swift in Sources */,
+				841A99BC28C1261D0031D3C8 /* MainView.swift in Sources */,
+				841A99BA28C125DE0031D3C8 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
