@@ -18,6 +18,7 @@
 		841A99AA28C125870031D3C8 /* TheDoorsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A99A928C125870031D3C8 /* TheDoorsUITestsLaunchTests.swift */; };
 		841A99BA28C125DE0031D3C8 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A99B928C125DE0031D3C8 /* Model.swift */; };
 		841A99BC28C1261D0031D3C8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A99BB28C1261D0031D3C8 /* MainView.swift */; };
+		84B965D928C4B9C8008DE363 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B965D828C4B9C8008DE363 /* CollectionViewCell.swift */; };
 		C807C1BB4BE214729782CBD1 /* Pods_TheDoors.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2D1E6FA51C85A2B613E2A0E /* Pods_TheDoors.framework */; };
 		DD6E669837835AACE354C183 /* Pods_TheDoors_TheDoorsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B115B6098C429DF6C51DE59F /* Pods_TheDoors_TheDoorsUITests.framework */; };
 		F74E0B342A38ECA89F646515 /* Pods_TheDoorsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD40A6EAB958E6AAA1AEE64 /* Pods_TheDoorsTests.framework */; };
@@ -58,6 +59,7 @@
 		841A99A928C125870031D3C8 /* TheDoorsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheDoorsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		841A99B928C125DE0031D3C8 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		841A99BB28C1261D0031D3C8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		84B965D828C4B9C8008DE363 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		B115B6098C429DF6C51DE59F /* Pods_TheDoors_TheDoorsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheDoors_TheDoorsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2D1E6FA51C85A2B613E2A0E /* Pods_TheDoors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheDoors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF93726385BA93C916461B7A /* Pods-TheDoorsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheDoorsTests.release.xcconfig"; path = "Target Support Files/Pods-TheDoorsTests/Pods-TheDoorsTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				841A99BB28C1261D0031D3C8 /* MainView.swift */,
+				84B965D828C4B9C8008DE363 /* CollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 			files = (
 				841A998B28C125840031D3C8 /* ViewController.swift in Sources */,
 				841A998728C125840031D3C8 /* AppDelegate.swift in Sources */,
+				84B965D928C4B9C8008DE363 /* CollectionViewCell.swift in Sources */,
 				841A998928C125840031D3C8 /* SceneDelegate.swift in Sources */,
 				841A99BC28C1261D0031D3C8 /* MainView.swift in Sources */,
 				841A99BA28C125DE0031D3C8 /* Model.swift in Sources */,
