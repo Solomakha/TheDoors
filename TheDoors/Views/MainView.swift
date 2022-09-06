@@ -10,11 +10,12 @@ import SnapKit
 
 class MainView: UIView {
    
+    var collectionView: UICollectionView!
+  
+    
     public var myView: UIView = {
         let view = UIView()
-        view.backgroundColor = .purple
         view.frame = .zero
-        
         return view
     }()
     
@@ -65,6 +66,16 @@ class MainView: UIView {
         return settingButton
     }()
     
+    private var layout : UICollectionViewFlowLayout {
+            let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+            let boundSize: CGSize = UIScreen.main.bounds.size
+            layout.itemSize = CGSize(width: boundSize.width, height: 50)
+            return layout
+        }
+    
+    
+    
+    /*
     var collectionView: UICollectionView = {
        let layout = UICollectionViewFlowLayout()
         let collection = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), collectionViewLayout: layout)
@@ -75,14 +86,14 @@ class MainView: UIView {
        return collection
     }()
     
-    /*
      var scrollView: UIScrollView = {
          let scrollView = UIScrollView()
          scrollView.backgroundColor = .green
-         scrollView.frame = view.bounds
-         scrollView.contentSize = contentSize
+         scrollView.frame = .zero
+         //scrollView.contentSize = contentSize
          return scrollView
      }()
+     
      var contentView: UIView = {
          let contentView = UIView()
          contentView.backgroundColor = .red
@@ -105,11 +116,17 @@ class MainView: UIView {
     
     override init (frame: CGRect){
         super.init(frame: frame)
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        
         self.addView()
         self.setConstraint()
-       
+        
+        self.collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), collectionViewLayout: self.layout)
+                self.collectionView.backgroundColor = UIColor.white
+                self.collectionView.delegate = self
+                self.collectionView.dataSource = self
+                self.collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
+                self.collectionView.reloadData()
+        self.myView.addSubview(collectionView)
         //settingButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         
     }
@@ -132,12 +149,9 @@ class MainView: UIView {
         addSubview(titleImage)
         addSubview(houseImageView)
         addSubview(myDoorLabel)
-        addSubview(collectionView)
         //addSubview(scrollView)
-        myView.addSubview(collectionView)
-        //scrollView.addSubview(collectionView)
-        //addSubview(stackView)
-        //collectionView.addSubview(stackView)
+        //myView.addSubview(scrollView)
+        //self.view.addSubview(collectionView)
     }
     
    
@@ -185,13 +199,13 @@ class MainView: UIView {
             make.leading.trailing.equalToSuperview().inset(5)
             make.height.equalToSuperview().inset(5)
         }
-        */
+        
         collectionView.snp.updateConstraints{make in
             make.top.equalTo(myView.snp.top).inset(5)
             make.leading.trailing.equalToSuperview().inset(5)
             make.height.equalToSuperview().inset(5)
         }
-        
+         */
         
 
     }
@@ -217,13 +231,21 @@ func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath:
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as! CollectionViewCell
     cell.doorTitleLabel.text = String("\(model.door[indexPath.item].doorTitle)")
     cell.doorDescrLabel.text = String("\(model.door[indexPath.item].doorDescr)")
-    
+    cell.doorTitleLabel.snp.makeConstraints{ make in
+        make.leading.top.equalToSuperview().inset(5)
+    }
+    cell.doorDescrLabel.snp.makeConstraints{ make in
+        make.leading.equalToSuperview().inset(5)
+        make.top.equalTo(cell.doorTitleLabel.snp.bottom).offset(10)
+    }
+    cell.layer.cornerRadius = 15
+    cell.backgroundColor = .red
     cell.awakeFromNib()
     return cell
 }
-   /*
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 300, height: 300)
+        return CGSize(width: UIScreen.main.bounds.width - 50, height: UIScreen.main.bounds.width - 50)
     }
-    */
+    
 }
