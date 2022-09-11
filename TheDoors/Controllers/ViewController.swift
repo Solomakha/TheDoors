@@ -61,12 +61,12 @@ class ViewController: UIViewController {
     func addSubview(){
         view.addSubview(myView)
         view.addSubview(ve.settingButton)
-        //view.addSubview(ve.collectionView)
         view.addSubview(ve.myView)
         view.addSubview(ve.myDoorLabel)
         view.addSubview(ve.titleImage)
         view.addSubview(ve.welcomeLabel)
         view.addSubview(ve.houseImageView)
+        ve.myView.addSubview(ve.collectionView)
     }
     
     func setConstraint(){
@@ -81,7 +81,7 @@ class ViewController: UIViewController {
         // Прорисовываю кнопоку настрек
         ve.settingButton.snp.makeConstraints{ make in
             make.width.height.equalTo(50)
-            make.leading.equalTo(myView.titleImage.snp.trailing).offset(200)
+            make.leading.equalTo(ve.titleImage.snp.trailing).offset(200)
             make.top.equalTo(50)
             make.trailing.equalToSuperview().offset(-20)
         }
@@ -100,11 +100,10 @@ class ViewController: UIViewController {
             make.width.equalTo(225)
             make.height.equalTo(200)
         }
-        /*
-        ve.collectionView.snp.makeConstraints{make in
-            make.top.equalTo(myView.snp.top).inset(5)
-            make.leading.trailing.equalToSuperview().inset(5)
-            make.height.equalToSuperview().inset(5)
+        
+        ve.myDoorLabel.snp.makeConstraints{ make in
+            make.leading.equalToSuperview().inset(20)
+            make.top.equalTo(ve.welcomeLabel.snp.bottom).offset(100)
         }
         
         ve.myView.snp.makeConstraints{ make in
@@ -113,17 +112,13 @@ class ViewController: UIViewController {
             make.height.equalTo(500)
         }
         
-        ve.myDoorLabel.snp.makeConstraints{ make in
-            make.leading.equalToSuperview().inset(20)
-            make.top.equalTo(ve.welcomeLabel.snp.bottom).offset(100)
-        }
-         */
-        /*
-        collectionView.snp.makeConstraints{make in
-            make.top.equalTo(myView.snp.top).inset(5)
+        ve.collectionView.snp.makeConstraints{make in
+            make.top.equalTo(ve.myView.snp.top).inset(5)
             make.leading.trailing.equalToSuperview().inset(5)
             make.height.equalToSuperview().inset(5)
-        }*/
+            make.bottom.equalToSuperview().inset(5)
+        }
+        
     }
     
     func action(){
