@@ -8,12 +8,10 @@
 import UIKit
 import SnapKit
 
-class MainView: UIView {
+class MainView: UIView{
    
-    var collectionView: UICollectionView!
-  
-    
-    public var myView: UIView = {
+    //var collectionView: UICollectionView!
+    lazy var myView: UIView = {
         let view = UIView()
         view.frame = .zero
         return view
@@ -36,7 +34,7 @@ class MainView: UIView {
         return imageView
         }()
     //Инициализирую надпись приветствия
-    private var welcomeLabel: UILabel = {
+    lazy var welcomeLabel: UILabel = {
         let label = UILabel()
         label.text = "Welcome"
         label.font = UIFont.systemFont(ofSize: 30, weight: .medium)
@@ -46,17 +44,37 @@ class MainView: UIView {
         return label
     }()
     //Инициализирую подпись коллекции
-    private var myDoorLabel: UILabel = {
+    lazy var myDoorLabel: UILabel = {
         let label = UILabel()
-        label.text = "My Door"
+        label.text = "My Doors"
         label.font = UIFont.systemFont(ofSize: 25, weight: .medium)
         label.textAlignment = .left
         label.textColor = .black
         label.numberOfLines = 1
+        label.isUserInteractionEnabled = true
         return label
     }()
+    
+    lazy var collectionView: UICollectionView = {
+        var layout : UICollectionViewFlowLayout {
+                let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+                let boundSize: CGSize = UIScreen.main.bounds.size
+                layout.itemSize = CGSize(width: boundSize.width, height: 50)
+            layout.scrollDirection = .vertical
+            layout.minimumLineSpacing = 5
+            layout.minimumInteritemSpacing = 5
+                return layout
+            }
+        
+        let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), collectionViewLayout: layout)
+        collectionView.backgroundColor = UIColor.white
+        collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
+        collectionView.reloadData()
+        return collectionView
+    }()
+    
     // Инициализирую кнопку настроек
-    private var settingButton: UIButton = {
+    lazy var settingButton: UIButton = {
         let image = UIImage(named: "Setting_img")
         let settingButton = UIButton(type: .system)
         settingButton.backgroundColor = .green
@@ -66,76 +84,14 @@ class MainView: UIView {
         return settingButton
     }()
     
-    private var layout : UICollectionViewFlowLayout {
-            let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-            let boundSize: CGSize = UIScreen.main.bounds.size
-            layout.itemSize = CGSize(width: boundSize.width, height: 50)
-            return layout
-        }
-    
-    
-    
-    /*
-    var collectionView: UICollectionView = {
-       let layout = UICollectionViewFlowLayout()
-        let collection = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), collectionViewLayout: layout)
-        collection.register(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
-        collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.backgroundColor = .gray
-        //collection.scrollToItem(at: IndexPath(item: 1, section: 0), at: .centeredHorizontally, animated: true)
-       return collection
-    }()
-    
-     var scrollView: UIScrollView = {
-         let scrollView = UIScrollView()
-         scrollView.backgroundColor = .green
-         scrollView.frame = .zero
-         //scrollView.contentSize = contentSize
-         return scrollView
-     }()
-     
-     var contentView: UIView = {
-         let contentView = UIView()
-         contentView.backgroundColor = .red
-         contentView.frame.size = contentSize
-         return contentView
-     }()
-     var stackView: UIStackView = {
-         let stackView = UIStackView()
-         stackView.axis = .vertical
-         stackView.alignment = .center
-         stackView.spacing = 20
-         return stackView
-     }()
-     
-     public var contentSize: CGSize{
-         CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-     }
-     
-     */
-    
     override init (frame: CGRect){
         super.init(frame: frame)
-        
         self.addView()
-        self.setConstraint()
-        
-        self.collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), collectionViewLayout: self.layout)
-                self.collectionView.backgroundColor = UIColor.white
-                self.collectionView.delegate = self
-                self.collectionView.dataSource = self
-                self.collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
-                self.collectionView.reloadData()
-        self.myView.addSubview(collectionView)
-        //settingButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        
+    
     }
+    
     public convenience init (with model: Model){
         self.init(frame: .zero)
-        //self.imageView.image = UIImage(named: model.doorImgNAme)
-        //self.doorTitleLabel.text = model.door[1].doorTitle
-        //self.doorDescrLabel.text = model.door[1].doorDescr
-        self.buttonTapped()
     }
     
     required init?(coder: NSCoder) {
@@ -145,107 +101,11 @@ class MainView: UIView {
     private func addView(){
         addSubview(welcomeLabel)
         addSubview(myView)
-        addSubview(settingButton)
         addSubview(titleImage)
         addSubview(houseImageView)
         addSubview(myDoorLabel)
-        //addSubview(scrollView)
-        //myView.addSubview(scrollView)
-        //self.view.addSubview(collectionView)
+        addSubview(collectionView)
+        addSubview(settingButton)
     }
-    
-   
-    
-    private func setConstraint(){
-        // Прорисовываю картинку с названием программы
-        titleImage.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(15)
-            make.top.equalToSuperview().inset(40)
-            make.width.equalTo(125)
-            make.height.equalTo(35)
-        }
-        // Прорисовываю кнопоку настрек
-        settingButton.snp.makeConstraints{ make in
-            make.width.height.equalTo(50)
-            make.leading.equalTo(titleImage.snp.trailing).offset(200)
-            make.top.equalTo(50)
-            make.trailing.equalToSuperview().offset(-20)
-        }
-        // Прорисовываю Label с приветствием
-        welcomeLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(20)
-            make.top.equalToSuperview().inset(200)
-        }
-        // Прописываю позицию для картинки с домиком
-        houseImageView.snp.makeConstraints{ make in
-            make.leading.equalTo(welcomeLabel.snp.trailing).offset(12)
-            make.centerY.equalTo(welcomeLabel.snp.centerY)
-            make.trailing.equalToSuperview().offset(-20)
-            make.width.equalTo(225)
-            make.height.equalTo(200)
-        }
-        myDoorLabel.snp.makeConstraints{ make in
-            make.leading.equalToSuperview().inset(20)
-            make.top.equalTo(welcomeLabel.snp.bottom).offset(100)
-        }
-        
-        myView.snp.makeConstraints{ make in
-            make.leading.trailing.equalToSuperview().inset(10)
-            make.top.equalTo(myDoorLabel.snp.bottom).offset(5)
-            make.height.equalTo(500)
-        }
-        /*scrollView.snp.makeConstraints{ make in
-            make.top.equalTo(myView.snp.top).inset(5)
-            make.leading.trailing.equalToSuperview().inset(5)
-            make.height.equalToSuperview().inset(5)
-        }
-        
-        collectionView.snp.updateConstraints{make in
-            make.top.equalTo(myView.snp.top).inset(5)
-            make.leading.trailing.equalToSuperview().inset(5)
-            make.height.equalToSuperview().inset(5)
-        }
-         */
-        
 
-    }
-    //Функция нажатия на кнопку настроек
-    @objc private func buttonTapped(){
-        print("Функционал в разработке")
-    }
-    
-    
-}
-
-extension MainView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let model: Model = Model()
-        return model.door.count
-       
-    }
-    
-    
-func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let model: Model = Model()
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as! CollectionViewCell
-    cell.doorTitleLabel.text = String("\(model.door[indexPath.item].doorTitle)")
-    cell.doorDescrLabel.text = String("\(model.door[indexPath.item].doorDescr)")
-    cell.doorTitleLabel.snp.makeConstraints{ make in
-        make.leading.top.equalToSuperview().inset(5)
-    }
-    cell.doorDescrLabel.snp.makeConstraints{ make in
-        make.leading.equalToSuperview().inset(5)
-        make.top.equalTo(cell.doorTitleLabel.snp.bottom).offset(10)
-    }
-    cell.layer.cornerRadius = 15
-    cell.backgroundColor = .red
-    cell.awakeFromNib()
-    return cell
-}
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width - 50, height: UIScreen.main.bounds.width - 50)
-    }
-    
 }
